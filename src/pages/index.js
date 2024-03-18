@@ -79,7 +79,7 @@ export default function Home() {
                 <div className="flex items-start" key={index}>
                   <img
                     className="mr-2 h-8 w-8 rounded-full"
-                    src="https://dummyimage.com/128x128/363536/ffffff&text=J"
+                    src="https://cdn.icon-icons.com/icons2/1371/PNG/512/robot02_90810.png"
                   />
                   <div
                     className="flex rounded-b-xl rounded-tr-xl bg-slate-50 p-4 dark:bg-slate-800 sm:max-w-md md:max-w-2xl"
@@ -91,7 +91,7 @@ export default function Home() {
                 <div className="flex flex-row-reverse items-start" key={index}>
                   <img
                     className="ml-2 h-8 w-8 rounded-full"
-                    src="https://dummyimage.com/128x128/354ea1/ffffff&text=G"
+                    src="https://png.pngtree.com/png-clipart/20230102/original/pngtree-fashion-boy-avatar-png-image_8855187.png"
                   />
 
                   <div

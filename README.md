@@ -5,7 +5,7 @@ this project uses
 
 for the UI that I use, I use [LangUI](https://www.langui.dev/)
 
-![image](https://github.com/nurd0tid/gpt-chatbot-pdf/assets/48532204/bbe315f2-9ea2-4f8d-8c9b-d0af4c2f8273)
+![image](https://github.com/nurd0tid/gpt-chatbot-pdf/assets/48532204/37974273-4dc7-46b7-b54e-86838a752eb1)
 
 ## Getting Started
 
