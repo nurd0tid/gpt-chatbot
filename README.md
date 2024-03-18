@@ -3,6 +3,8 @@ This is a simple project for an AI chat bot with references from the PDF that we
 this project uses
 **Nextjs**, **Chat GPT** and **Supabase as databases**
 
+for the UI that I use, I use [LangUI](https://www.langui.dev/)
+
 ![image](https://github.com/nurd0tid/gpt-chatbot-pdf/assets/48532204/bbe315f2-9ea2-4f8d-8c9b-d0af4c2f8273)
 
 ## Getting Started
