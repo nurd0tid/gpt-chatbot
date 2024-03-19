@@ -8,6 +8,7 @@ export default function Home() {
   const [messages, setMessages] = useState([]);
   const [initialFetchComplete, setInitialFetchComplete] = useState(false);
   const [inputText, setInputText] = useState('');
+  const [isLoading, setIsLoading] = useState('');
   const messagesEndRef = useRef(null);
 
   useEffect(() => {
@@ -56,12 +57,15 @@ export default function Home() {
     e.preventDefault();
     if (!inputText.trim()) return;
     try {
+      setIsLoading(true);
       const response = await axios.post('/api/chat', { text: inputText, sender: 'user' });
       if (response.status === 200) {
-        toast.success(response.data.message);
         setInputText('');
+        setIsLoading(false);
+        toast.success(response.data.message);
       }
     } catch (error) {
+      setIsLoading(false);
       toast.error(error.response.data.message);
     }
   };
@@ -252,13 +256,21 @@ export default function Home() {
               value={inputText}
               onChange={(e) => setInputText(e.target.value)}
             ></textarea>
-            <button
-              type="submit"
-              className="absolute bottom-2 right-2.5 rounded-lg bg-blue-700 px-4 py-2 text-sm font-medium text-slate-200 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 sm:text-base"
-              onClick={handleSendMessage}
-            >
-              Send <span className="sr-only">Send message</span>
-            </button>
+            {isLoading ? (
+              <div className='flex space-x-2 absolute bottom-5 right-3'>
+                  <div className='w-2 h-2 bg-gray-500 rounded-full animate-bounce [animation-delay:-0.2s]'></div>
+                  <div className='w-2 h-2 bg-gray-500 rounded-full animate-bounce [animation-delay:-0.15s]'></div>
+                  <div className='w-2 h-2 bg-gray-500 rounded-full animate-bounce'></div>
+              </div>
+            ) : (
+              <button
+                type="submit"
+                className="absolute bottom-2 right-2.5 rounded-lg bg-blue-700 px-4 py-2 text-sm font-medium text-slate-200 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 sm:text-base"
+                onClick={handleSendMessage}
+              >
+                Send <span className="sr-only">Send message</span>
+              </button>
+            )}
           </div>
         </form>
       </div>
