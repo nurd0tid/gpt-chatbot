@@ -58,7 +58,8 @@ export default function Home() {
     if (!inputText.trim()) return;
     try {
       setIsLoading(true);
-      const response = await axios.post('/api/chat', { text: inputText, sender: 'user' });
+      setInputText(''); 
+      const response = await axios.post('/api/assistants', { text: inputText, sender: 'user' });
       if (response.status === 200) {
         setInputText('');
         setIsLoading(false);
@@ -70,6 +71,20 @@ export default function Home() {
     }
   };
 
+  function formatOutput(message) {
+    const fileDescriptions = message.split('\n').slice(2);
+    return (
+      <div>
+        <p>{message.split('\n')[0]}</p>
+        <ul>
+          {fileDescriptions.map((fileDescription, index) => (
+            <li key={index}>{fileDescription}</li>
+          ))}
+        </ul>
+      </div>
+    );
+  }
+
   return (
     <>
       <ToastContainer />
@@ -79,7 +94,7 @@ export default function Home() {
           className="flex-1 space-y-6 overflow-y-auto rounded-xl bg-slate-200 p-4 text-sm leading-6 text-slate-900 shadow-sm dark:bg-slate-900 dark:text-slate-300 sm:text-base sm:leading-7"
         >
           {messages.map((message, index) => (
-              message.role === 'system' ? (
+              message.role === 'system' || message.role === 'assistant' ? (
                 <div className="flex items-start" key={index}>
                   <img
                     className="mr-2 h-8 w-8 rounded-full"
@@ -88,7 +103,7 @@ export default function Home() {
                   <div
                     className="flex rounded-b-xl rounded-tr-xl bg-slate-50 p-4 dark:bg-slate-800 sm:max-w-md md:max-w-2xl"
                   >
-                    <p>{message.content}</p>
+                    {formatOutput(message.content)}
                   </div>
                 </div>
               ) : (
