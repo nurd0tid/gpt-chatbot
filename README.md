@@ -1,4 +1,4 @@
-This is a simple project for an AI chat bot with references from the PDF that we provide, so that the GPT chat answers are more specific to what we want, such as taxes from government documents and others.
+This is a simple project for an AI chat bot.
 
 this project uses
 **Nextjs**, **Chat GPT** and **Supabase as databases**
